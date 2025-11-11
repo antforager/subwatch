@@ -1,0 +1,48 @@
+SUBWATCH - SETUP CHECKLIST
+==========================
+
+[ ] 1. Create Reddit App at https://www.reddit.com/prefs/apps
+      - Click "create another app..."
+      - Type: script
+      - Redirect URI: http://localhost:8080
+      - Copy client_id (under "personal use script")
+      - Copy secret
+
+[ ] 2. Choose subreddit to monitor
+      - Example: python, news, funny (without "r/" prefix)
+
+[ ] 3. Create Discord Webhook
+      - Server Settings → Integrations → Webhooks → New Webhook
+      - Copy webhook URL
+
+[ ] 4. Install Python on target computer
+      - sudo apt install python3 python3-pip -y
+
+[ ] 5. Copy all files to target computer
+
+[ ] 6. Install dependencies
+      - pip3 install -r requirements.txt
+
+[ ] 7. Create .env file
+      - cp .env.example .env
+      - nano .env
+      - Paste your client_id, secret, subreddit name, and webhook URL
+      - Update user agent with your Reddit username
+
+[ ] 8. Test it
+      - python3 main.py
+      - Wait for new posts in the subreddit
+      - Check Discord
+
+[ ] 9. Run 24/7
+      - screen -S subwatch
+      - python3 main.py
+      - Ctrl+A then D to detach
+
+DONE! Monitor is running.
+
+To check on it later: screen -r subwatch
+To stop it: screen -r subwatch, then Ctrl+C
+
+---
+See SETUP_GUIDE.md for detailed instructions

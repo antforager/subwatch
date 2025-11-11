@@ -1,0 +1,26 @@
+[
+  {
+    "subreddit": "python",
+    "webhook_url": "https://discord.com/api/webhooks/your-webhook-url-for-python",
+    "enabled": true,
+    "monitor_posts": true,
+    "monitor_keywords": false,
+    "keyword_webhook_url": ""
+  },
+  {
+    "subreddit": "news",
+    "webhook_url": "https://discord.com/api/webhooks/your-webhook-url-for-news",
+    "enabled": true,
+    "monitor_posts": true,
+    "monitor_keywords": false,
+    "keyword_webhook_url": ""
+  },
+  {
+    "subreddit": "LocalLLaMA",
+    "webhook_url": "https://discord.com/api/webhooks/your-webhook-url-for-localllama",
+    "enabled": false,
+    "monitor_posts": true,
+    "monitor_keywords": true,
+    "keyword_webhook_url": "https://discord.com/api/webhooks/your-webhook-url-for-keywords"
+  }
+]
