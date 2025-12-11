@@ -1,0 +1,20 @@
+[
+  {
+    "subreddit": "the name of your first channel",
+    "webhook_url": "https://discord.com/api/webhooks/your-first-web-hook-url",
+    "enabled": true,
+    "monitor_posts": true,
+    "monitor_keywords": true,
+    "keyword_webhook_url": "https://discord.com/api/webhooks/your-first-keyword-webhook-url"
+  }
+  ,
+  {
+    "subreddit": "the name of your second channel",
+    "webhook_url": "https://discord.com/api/webhooks/your-second-web-hook-url",
+    "enabled": true,
+    "monitor_posts": true,
+    "monitor_keywords": true,
+    "keyword_webhook_url": "https://discord.com/api/webhooks/your-second-keyword-webhook-url"
+  }
+
+]

@@ -1,0 +1,1 @@
+C:\WINDOWS\system32\wsl.exe -d Ubuntu bash start_monitor.sh  
