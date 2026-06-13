@@ -2,6 +2,46 @@
 
 Follow these steps exactly to get SubWatch running on your computer.
 
+> **Windows users:** Start with the [Windows Setup (WSL)](#windows-setup-wsl) section below before continuing to Step 1.
+
+---
+
+## Windows Setup (WSL)
+
+SubWatch runs in a Linux-style environment. On Windows, the easiest way to get this is **WSL (Windows Subsystem for Linux)** — a free Microsoft feature that lets you run Linux commands directly on your Windows machine. No dual-booting required.
+
+### Install WSL
+
+1. Open **PowerShell as Administrator**:
+   - Press `Windows + S`, type `PowerShell`
+   - Right-click **Windows PowerShell** → **"Run as administrator"**
+
+2. Run this command:
+   ```powershell
+   wsl --install
+   ```
+   This installs WSL and Ubuntu (the most common Linux distribution) automatically.
+
+3. **Restart your computer** when prompted.
+
+4. After restarting, Ubuntu will finish setting up. When it asks you to **create a username and password**, choose something simple — you'll need the password occasionally when running `sudo` commands.
+
+### Open WSL
+
+From now on, whenever the guide says "open terminal" or "WSL terminal":
+- Press `Windows + S`, search for **Ubuntu** (or **WSL**), and open it
+- Or open Windows Terminal and click the **Ubuntu** tab
+
+### Tips for Navigating Files
+
+Your Windows files are accessible in WSL under `/mnt/c/`. For example:
+- `C:\subwatch\` in Windows → `/mnt/c/subwatch/` in WSL
+- `C:\Users\YourName\` in Windows → `/mnt/c/Users/YourName/` in WSL
+
+Once WSL is installed, continue with **Step 1** below.
+
+---
+
 ## Step 1: Create Reddit App
 
 1. Go to https://www.reddit.com/prefs/apps
@@ -210,16 +250,23 @@ This makes the monitor start automatically whenever you boot your computer.
 
 7. In the **Triggers** tab:
    - Click **"New"**
-   - Begin the task: **"At startup"**
+   - Begin the task: **"At System Startup"**
    - Click **"OK"**
 
 8. In the **Actions** tab:
    - Click **"New"**
    - Action: **"Start a program"**
-   - Program/script: `wsl.exe`
-   - Add arguments: `-d Ubuntu bash /mnt/c/subwatch/start_monitor.sh`
+   - Program/script: `C:\WINDOWS\system32\wsl.exe`
+   - Add arguments: `-d Ubuntu bash start_monitor.sh`
      - If you use a different WSL distro (like Debian), replace `Ubuntu` with your distro name
+   - Start in: `c:\code\subwatch` *(use the folder where your SubWatch files are)*
    - Click **"OK"**
+
+   It should look like this when done:
+
+   ![Task Scheduler Actions tab showing the wsl.exe command](images/task-scheduler-actions.png)
+
+   > **Note:** The files can live on your Windows filesystem (e.g. `c:\code\subwatch`) rather than inside WSL — this works fine.
 
 9. In the **Conditions** tab:
    - **UNCHECK** "Start the task only if the computer is on AC power"
