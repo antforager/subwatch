@@ -152,14 +152,23 @@ def main():
                     posts = monitor.get_posts_since(last_check_posts)
 
                     if posts:
-                        print(f"[r/{subreddit_name}] Found {len(posts)} new post(s)")
+                        # Advance the timestamp based on everything fetched, even
+                        # blacklisted posts, so suppressed content isn't re-checked.
+                        latest_ts = max(post['ts'] for post in posts)
+
+                        # Blacklist is the final authority — never post suppressed content
+                        postable = keyword_matcher.remove_blacklisted_posts(posts)
+                        suppressed = len(posts) - len(postable)
+
+                        print(f"[r/{subreddit_name}] Found {len(posts)} new post(s)" +
+                              (f" ({suppressed} suppressed by blacklist)" if suppressed else ""))
 
                         # Post to Discord
-                        success_count = poster.post_batch(posts, subreddit_name)
-                        print(f"[r/{subreddit_name}] Posted {success_count}/{len(posts)} post(s) to Discord")
+                        if postable:
+                            success_count = poster.post_batch(postable, subreddit_name)
+                            print(f"[r/{subreddit_name}] Posted {success_count}/{len(postable)} post(s) to Discord")
 
                         # Update last check timestamp to the most recent post
-                        latest_ts = max(post['ts'] for post in posts)
                         state.save_last_check(f"{subreddit_name}_posts", latest_ts)
                     else:
                         print(f"[r/{subreddit_name}] No new posts")

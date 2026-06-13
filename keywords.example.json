@@ -2,7 +2,10 @@
   "keywords": [
     "bikes",
     "rainbows",
-    "butterflies"
+    "I'm a lover, not a fighter"
+  ],
+  "blacklist": [
+    "My guide to antkeeping"
   ],
   "case_sensitive": false,
   "search_posts": true,
